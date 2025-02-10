@@ -1,16 +1,25 @@
-<header class="blog-header my-5">
-  <div class="row flex-nowrap justify-content-between align-items-center pb-3 pt-1">
-    <div class="col-12 text-center">
-      <a class="blog-header-logo text-dark" href="{{ site.baseurl | prepend: site.url}}/" style="font-family: 'Playfair', cursive;">{{ site.title }}</a>
+<header class="header" itemscope itemtype="http://schema.org/SiteNavigationElement" aria-label="Main navigation">
+  <div class="container">
+    <div class="header__inner">
+      <a class="header__logo" href="{{ '/' | relative_url }}">
+        <div class="header__logo--container">
+          {% include logo.svg %}
+        </div>
+      </a>
+      <nav class="header__links">
+        <div class="container header__links-wrapper">
+          {% for item in site.navigation %}
+            <a class="header__link" href="{{ item.link | relative_url }}" itemprop="url">
+              <span itemprop="name">{{ item.name }}</span>
+            </a>
+          {% endfor %}
+        </div>
+      </nav>
+      <div class="header__toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
-  </div>
-  <div class="nav-scroller py-1 mb-2">
-    <nav class="nav d-flex justify-content-center">
-      {% for collection in site.collections %}
-        {% if collection.label != 'posts' %}
-          <a class="p-3 text-uppercase text-muted small" href="{{ collection.label | prepend: "/" | prepend: site.baseurl | prepend: site.url}}">{{ collection.label | capitalize }}</a>
-        {% endif %}
-      {% endfor %}
-    </nav>
   </div>
 </header>
